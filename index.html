@@ -16,10 +16,11 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
-      <h1>Ciutadella</h1>
+      <h1 id="city">Ciutadella</h1>
       <div id="currentDate">Friday 16:01</div>
       <div id="weatherDescription">Moderate rain</div>
       <div class="row">
@@ -29,7 +30,8 @@
             id="weatherIcon"
           />
           <span id="units">
-            <span> 25</span><span><a href="#" id="celsius">ºC</a></span
+            <span id="temperature"></span
+            ><span><a href="#" id="celsius">ºC</a></span
             >|<span><a href="#" id="farenheit">ºF</a></span>
           </span>
         </div>
