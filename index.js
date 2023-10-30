@@ -1,3 +1,16 @@
+let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
+function searchCity(event) {
+  event.preventDefault();
+  let enterInput = document.querySelector("#cityInput");
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = enterInput.value;
+  let query = enterInput.value;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayCurrentWeather);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", searchCity);
+
 function currentDayAndTime() {
   let currentDateElement = document.querySelector("#currentDate");
   let dayHour = new Date();
@@ -17,8 +30,6 @@ function currentDayAndTime() {
 }
 currentDayAndTime();
 
-let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
-
 function displayCurrentWeather(response) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
@@ -30,7 +41,6 @@ function displayCurrentWeather(response) {
   feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
 }
 
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Lisbon&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayCurrentWeather);
 
 function currentWeatherIcon(response) {
