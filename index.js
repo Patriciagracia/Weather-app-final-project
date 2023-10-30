@@ -1,3 +1,22 @@
+function currentDayAndTime() {
+  let currentDateElement = document.querySelector("#currentDate");
+  let dayHour = new Date();
+  let hours = dayHour.getHours().toString().padStart(2, "0");
+  let minutes = dayHour.getMinutes().toString().padStart(2, "0");
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[dayHour.getDay()];
+  currentDateElement.innerHTML = `${day} ${hours}:${minutes} h`;
+}
+currentDayAndTime();
+
 let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
 
 function displayCurrentWeather(response) {
