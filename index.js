@@ -1,4 +1,5 @@
 let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
+
 function searchCity(event) {
   event.preventDefault();
   let enterInput = document.querySelector("#cityInput");
@@ -39,13 +40,8 @@ function displayCurrentWeather(response) {
   humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
   let feelsLikeElement = document.querySelector("#feelsLike");
   feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
-}
-
-axios.get(apiUrl).then(displayCurrentWeather);
-
-function currentWeatherIcon(response) {
   let iconElement = document.querySelector("#weatherIcon");
   iconElement.setAttribute("src", response.data.condition.icon_url);
 }
 
-axios.get(apiUrl).then(currentWeatherIcon);
+axios.get(apiUrl).then(displayCurrentWeather);
