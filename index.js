@@ -12,6 +12,18 @@ function searchCity(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
 
+function showFarenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#temperatureUnit");
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(farenheitTemperature);
+}
+
+let celsiusTemperature = null;
+
+let farenheitBtn = document.querySelector("#farenheitLink");
+farenheitBtn.addEventListener("click", showFarenheitTemperature);
+
 function currentDayAndTime() {
   let currentDateElement = document.querySelector("#currentDate");
   let dayHour = new Date();
@@ -32,7 +44,7 @@ function currentDayAndTime() {
 currentDayAndTime();
 
 function displayCurrentWeather(response) {
-  let temperatureElement = document.querySelector("#temperature");
+  let temperatureElement = document.querySelector("#temperatureUnit");
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -42,6 +54,6 @@ function displayCurrentWeather(response) {
   feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
   let iconElement = document.querySelector("#weatherIcon");
   iconElement.setAttribute("src", response.data.condition.icon_url);
-}
 
-axios.get(apiUrl).then(displayCurrentWeather);
+  //let celsiusTemperature = response.data.main.temp;
+}
