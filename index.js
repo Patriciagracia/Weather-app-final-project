@@ -12,6 +12,30 @@ function searchCity(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
 
+function displayCurrentWeather(response) {
+  let temperatureElement = document.querySelector("#temperatureUnit");
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
+  let feelsLikeElement = document.querySelector("#feelsLike");
+  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
+  let iconElement = document.querySelector("#weatherIcon");
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+}
+
+let celsiusTemperature = null;
+function showFarenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#temperatureUnit");
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(farenheitTemperature);
+}
+
+let farenheitBtn = document.querySelector("#farenheitLink");
+farenheitBtn.addEventListener("click", showFarenheitTemperature);
+
 function currentDayAndTime() {
   let currentDateElement = document.querySelector("#currentDate");
   let dayHour = new Date();
@@ -30,30 +54,3 @@ function currentDayAndTime() {
   currentDateElement.innerHTML = `${day} ${hours}:${minutes} h`;
 }
 currentDayAndTime();
-
-function displayCurrentWeather(response) {
-  let temperatureElement = document.querySelector("#temperatureUnit");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
-  let feelsLikeElement = document.querySelector("#feelsLike");
-  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
-  let iconElement = document.querySelector("#weatherIcon");
-  iconElement.setAttribute("src", response.data.condition.icon_url);
-
-  let celsiusTemperature = response.data.temperature.current;
-}
-
-function showFarenheitTemperature(event) {
-  event.preventDefault();
-  let currentTemperature = document.querySelector("#temperatureUnit");
-  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  currentTemperature.innerHTML = Math.round(farenheitTemperature);
-}
-
-let celsiusTemperature = null;
-
-let farenheitBtn = document.querySelector("#farenheitLink");
-farenheitBtn.addEventListener("click", showFarenheitTemperature);
