@@ -23,12 +23,15 @@ function displayCurrentWeather(response) {
   feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
   let iconElement = document.querySelector("#weatherIcon");
   iconElement.setAttribute("src", response.data.condition.icon_url);
+
+  let celsiusTemperature = response.data.temperature.current;
 }
 
 let celsiusTemperature = null;
 function showFarenheitTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#temperatureUnit");
+  console.log(celsiusTemperature);
   let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   currentTemperature.innerHTML = Math.round(farenheitTemperature);
 }
