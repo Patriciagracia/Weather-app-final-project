@@ -12,18 +12,6 @@ function searchCity(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", searchCity);
 
-function showFarenheitTemperature(event) {
-  event.preventDefault();
-  let currentTemperature = document.querySelector("#temperatureUnit");
-  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  currentTemperature.innerHTML = Math.round(farenheitTemperature);
-}
-
-let celsiusTemperature = null;
-
-let farenheitBtn = document.querySelector("#farenheitLink");
-farenheitBtn.addEventListener("click", showFarenheitTemperature);
-
 function currentDayAndTime() {
   let currentDateElement = document.querySelector("#currentDate");
   let dayHour = new Date();
@@ -55,5 +43,17 @@ function displayCurrentWeather(response) {
   let iconElement = document.querySelector("#weatherIcon");
   iconElement.setAttribute("src", response.data.condition.icon_url);
 
-  //let celsiusTemperature = response.data.main.temp;
+  let celsiusTemperature = response.data.temperature.current;
 }
+
+function showFarenheitTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#temperatureUnit");
+  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(farenheitTemperature);
+}
+
+let celsiusTemperature = null;
+
+let farenheitBtn = document.querySelector("#farenheitLink");
+farenheitBtn.addEventListener("click", showFarenheitTemperature);
