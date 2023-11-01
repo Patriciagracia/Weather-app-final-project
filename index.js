@@ -21,15 +21,18 @@ form.addEventListener("submit", search);
 
 function displayCurrentWeather(response) {
   let temperatureElement = document.querySelector("#temperatureUnit");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = Math.round(response.data.wind.speed);
   let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
   let feelsLikeElement = document.querySelector("#feelsLike");
-  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
   let iconElement = document.querySelector("#weatherIcon");
+  let weatherDescriptionElement = document.querySelector("#weatherDescription");
+
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
+  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
   iconElement.setAttribute("src", response.data.condition.icon_url);
+  weatherDescriptionElement.innerHTML = response.data.condition.description;
 
   celsiusTemperature = response.data.temperature.current;
 }
