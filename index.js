@@ -1,6 +1,7 @@
 let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
 
-function search(city) {
+function search(event) {
+  event.preventDefault();
   let enterInput = document.querySelector("#cityInput");
   let h1 = document.querySelector("h1");
   h1.innerHTML = enterInput.value;
