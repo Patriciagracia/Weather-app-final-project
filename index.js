@@ -35,16 +35,23 @@ function displayCurrentWeather(response) {
 }
 
 let celsiusTemperature = null;
-function showFarenheitTemperature(event) {
+function showFahrenheitTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#temperatureUnit");
-  console.log(celsiusTemperature);
-  let farenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  currentTemperature.innerHTML = Math.round(farenheitTemperature);
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-let farenheitBtn = document.querySelector("#farenheitLink");
-farenheitBtn.addEventListener("click", showFarenheitTemperature);
+let fahrenheitBtn = document.querySelector("#farenheitLink");
+fahrenheitBtn.addEventListener("click", showFahrenheitTemperature);
+
+function showCelsiusTemperature() {
+  let currentTemperature = document.querySelector("#temperatureUnit");
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusBtn = document.querySelector("#celsiusLink");
+celsiusBtn.addEventListener("click", showCelsiusTemperature);
 
 function currentDayAndTime() {
   let currentDateElement = document.querySelector("#currentDate");
