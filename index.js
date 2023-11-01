@@ -1,5 +1,12 @@
 let apiKey = "e4167474503t4a0o133bbfcc9fa69a38";
 
+function defaultCity() {
+  let defaultCity = "Zaragoza";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${defaultCity}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayCurrentWeather);
+}
+defaultCity();
+
 function search(event) {
   event.preventDefault();
   let enterInput = document.querySelector("#cityInput");
@@ -11,13 +18,6 @@ function search(event) {
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
-
-function defaultCity() {
-  let defaultCity = "Zaragoza";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${defaultCity}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayCurrentWeather);
-}
-defaultCity();
 
 function displayCurrentWeather(response) {
   let temperatureElement = document.querySelector("#temperatureUnit");
