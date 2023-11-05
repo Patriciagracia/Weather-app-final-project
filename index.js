@@ -74,3 +74,26 @@ function currentDayAndTime() {
   currentDateElement.innerHTML = `${day} ${hours}:${minutes} h`;
 }
 currentDayAndTime();
+
+function displayForecast() {
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri"];
+
+  let forecastHTML = "";
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class = "weather-forecast-day">
+        <div class = "weather-forecast-date">${day}</div>
+        <div class = "weather-forecast-icon">☀️</div>
+        <div class = "weather-forecast-max-temperature"> 15º <span class = "weather-forecast-min-temperature">9º</span></div> 
+      </div>
+`;
+
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = forecastHTML;
+  });
+}
+
+displayForecast();

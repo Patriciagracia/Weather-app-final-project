@@ -23,3 +23,10 @@ footer {
 #units {
   font-size: 30px;
 }
+
+#forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+}
