@@ -77,16 +77,15 @@ function currentDayAndTime() {
 currentDayAndTime();
 
 function displayForecast(response) {
-  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri"];
   let forecastHTML = "";
-  days.forEach(function (day) {
+  response.data.daily.forEach(function (day) {
     forecastHTML =
       forecastHTML +
       `
       <div class = "weather-forecast-day">
-        <div class = "weather-forecast-date">${day}</div>
+        <div class = "weather-forecast-date">tue</div>
         <div class = "weather-forecast-icon">☀️</div>
-        <div class = "weather-forecast-max-temperature"> 15º <span class = "weather-forecast-min-temperature">9º</span></div> 
+        <div class = "weather-forecast-max-temperature"> ${day.temperature.maximum} <span class = "weather-forecast-min-temperature">${day.temperature.minimum}</span></div> 
       </div>
 `;
     let forecastElement = document.querySelector("#forecast");
