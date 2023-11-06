@@ -35,6 +35,7 @@ function displayCurrentWeather(response) {
   weatherDescriptionElement.innerHTML = response.data.condition.description;
 
   celsiusTemperature = response.data.temperature.current;
+  getForecast(response.data.city);
 }
 
 let celsiusTemperature = null;
@@ -75,11 +76,9 @@ function currentDayAndTime() {
 }
 currentDayAndTime();
 
-function displayForecast() {
+function displayForecast(response) {
   let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri"];
-
   let forecastHTML = "";
-
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -90,10 +89,14 @@ function displayForecast() {
         <div class = "weather-forecast-max-temperature"> 15º <span class = "weather-forecast-min-temperature">9º</span></div> 
       </div>
 `;
-
     let forecastElement = document.querySelector("#forecast");
     forecastElement.innerHTML = forecastHTML;
   });
+}
+
+function getForecast(city) {
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 displayForecast();
