@@ -13,6 +13,7 @@ function search(event) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = enterInput.value;
   let query = enterInput.value;
+  enterInput.value = "";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
@@ -20,6 +21,7 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 function displayCurrentWeather(response) {
+  let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperatureUnit");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
@@ -27,6 +29,7 @@ function displayCurrentWeather(response) {
   let iconElement = document.querySelector("#weatherIcon");
   let weatherDescriptionElement = document.querySelector("#weatherDescription");
 
+  cityElement.innerHTML = response.data.city;
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   windElement.innerHTML = Math.round(response.data.wind.speed);
   humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
