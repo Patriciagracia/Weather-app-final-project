@@ -13,7 +13,10 @@ function search(event) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = enterInput.value;
   let query = enterInput.value;
-  enterInput.value = "";
+  enterInput.value = ""; //I use this in order to keep blank the search engine after the user have used it
+  if (enterInput.value === undefined) {
+    alert: "hello";
+  } //this is my attempt to change the message "undefined" when the user writes a city that doesn't exist
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
@@ -96,11 +99,11 @@ function displayForecast(response) {
       <div class = "weather-forecast-day">
         <div class = "weather-forecast-date">${formatDay(day.time)}</div>
         <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
-        <div class = "weather-forecast-max-temperature"> ${Math.round(
+        <div class = "weather-forecast-max-temperature"><strong> ${Math.round(
           day.temperature.maximum
-        )} <span class = "weather-forecast-min-temperature">${Math.round(
+        )}º</strong> <span class = "weather-forecast-min-temperature">${Math.round(
           day.temperature.minimum
-        )}</span></div> 
+        )}º</span></div> 
       </div>
 `;
     }
