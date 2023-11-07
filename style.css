@@ -30,3 +30,7 @@ footer {
   justify-content: space-evenly;
   text-align: center;
 }
+
+.weather-forecast-icon {
+  max-width: 50%;
+}

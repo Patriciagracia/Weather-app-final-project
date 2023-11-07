@@ -76,18 +76,31 @@ function currentDayAndTime() {
 }
 currentDayAndTime();
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function displayForecast(response) {
   let forecastHTML = "";
-  response.data.daily.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class = "weather-forecast-day">
-        <div class = "weather-forecast-date">tue</div>
-        <div class = "weather-forecast-icon">☀️</div>
-        <div class = "weather-forecast-max-temperature"> ${day.temperature.maximum} <span class = "weather-forecast-min-temperature">${day.temperature.minimum}</span></div> 
+        <div class = "weather-forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
+        <div class = "weather-forecast-max-temperature"> ${Math.round(
+          day.temperature.maximum
+        )} <span class = "weather-forecast-min-temperature">${Math.round(
+          day.temperature.minimum
+        )}</span></div> 
       </div>
 `;
+    }
     let forecastElement = document.querySelector("#forecast");
     forecastElement.innerHTML = forecastHTML;
   });
