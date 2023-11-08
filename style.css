@@ -1,12 +1,17 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
+  color: #575757;
 }
-
+h1 {
+  margin-top: 10px;
+}
 .container {
   max-width: 600px;
   border: 1px solid;
   border-radius: 12px;
   padding: 25px;
+  background: #fcfcfc;
+  margin-top: 15px;
 }
 
 #currentDate,
@@ -15,13 +20,17 @@ body {
 }
 #currentWeather {
   list-style: none;
+  margin-top: 5px;
+  font-size: 14px;
 }
 footer {
+  margin-top: 10px;
   text-align: center;
   font-size: small;
 }
 #units {
-  font-size: 30px;
+  font-size: 53px;
+  font-weight: bolder;
 }
 
 #forecast {
@@ -33,4 +42,21 @@ footer {
 
 .weather-forecast-icon {
   max-width: 50%;
+}
+#scaleWrapper {
+  font-size: 18px;
+  vertical-align: super;
+}
+
+#submitButton {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #6887fd;
+  --bs-btn-border-color: #6887fd;
+  --bs-btn-hover-color: #cbd6ff;
+  --bs-btn-hover-bg: #FFB51;
+  --bs-btn-hover-border-color: #cbd6ff;
+}
+
+a {
+  color: #6887fd;
 }
