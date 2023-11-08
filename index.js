@@ -7,23 +7,24 @@ function defaultCity() {
 }
 defaultCity();
 
+function displayError() {
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = "City not found";
+}
+
 function search(event) {
   event.preventDefault();
   let enterInput = document.querySelector("#cityInput");
-  let h1 = document.querySelector("h1");
-  h1.innerHTML = enterInput.value;
-  let query = enterInput.value;
-  enterInput.value = ""; //I use this in order to keep blank the search engine after the user have used it
-  if (enterInput.value === undefined) {
-    alert: "hello";
-  } //this is my attempt to change the message "undefined" when the user writes a city that doesn't exist
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${enterInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 function displayCurrentWeather(response) {
+  if (response.data.status === "not_found") {
+    return displayError();
+  }
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#temperatureUnit");
   let windElement = document.querySelector("#wind");
@@ -116,5 +117,3 @@ function getForecast(city) {
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
-
-displayForecast();
