@@ -4,6 +4,8 @@ body {
 }
 h1 {
   margin-top: 10px;
+  font-weight: bold;
+  color: #6887fd;
 }
 .container {
   max-width: 600px;
