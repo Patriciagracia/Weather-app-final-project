@@ -20,6 +20,11 @@
   </head>
   <body>
     <div class="container">
+      <div class="text-center" id="spinner-container">
+        <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>
       <form id="search-form" class="mb-3">
             <div class="row">
               <div class="col-9">
@@ -40,6 +45,7 @@
                 />
               </div>
             </div>
+            
       <h1 id="city">Zaragoza</h1>
       <div id="currentDate">Friday 16:01</div>
       <div id="weatherDescription">Moderate rain</div>
@@ -57,7 +63,7 @@
           <ul id="currentWeather">
             <li>Feels Like: <span id="feelsLike"></span>ºC</li>
             <li>Humidity: <span id="humidity"></span>%</li>
-            <li>Wind:<span id="wind"></span>m/s</li>
+            <li>Wind:<span id="wind"></span> m/s</li>
           </ul>
         </div>
       </div>

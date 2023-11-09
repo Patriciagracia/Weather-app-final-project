@@ -14,6 +14,10 @@ function displayError() {
 
 function search(event) {
   event.preventDefault();
+  let spinner = document.querySelector("#spinner-container");
+  let searchForm = document.querySelector("#search-form");
+  spinner.style.display = "block";
+  searchForm.style.display = "none";
   let enterInput = document.querySelector("#cityInput");
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${enterInput.value}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentWeather);
@@ -23,6 +27,11 @@ let form = document.querySelector("#search-form");
 form.addEventListener("submit", search);
 
 function displayCurrentWeather(response) {
+  let spinner = document.querySelector("#spinner-container");
+  let searchForm = document.querySelector("#search-form");
+
+  spinner.style.display = "none";
+  searchForm.style.display = "block";
   if (response.data.status === "not_found") {
     return displayError();
   }
@@ -36,9 +45,16 @@ function displayCurrentWeather(response) {
 
   cityElement.innerHTML = response.data.city;
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
-  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
+  windElement.innerHTML = `<strong>${Math.round(
+    response.data.wind.speed
+  )}</strong>`;
+  humidityElement.innerHTML = `<strong>${Math.round(
+    response.data.temperature.humidity
+  )}</strong>`;
+  feelsLikeElement.innerHTML = `<strong>${Math.round(
+    response.data.temperature.feels_like
+  )}</strong>`;
+
   iconElement.setAttribute("src", response.data.condition.icon_url);
   weatherDescriptionElement.innerHTML = response.data.condition.description;
 
