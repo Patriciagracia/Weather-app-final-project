@@ -62,8 +62,17 @@ footer {
   --bs-btn-hover-color: #cbd6ff;
   --bs-btn-hover-bg: #FFB51;
   --bs-btn-hover-border-color: #cbd6ff;
+  box-shadow: 3px 3px #cbd6ff;
 }
 
 a {
+  color: #575757;
+}
+#githubLink,
+#netlifyLink {
   color: #6887fd;
+}
+#cityInput {
+  border-color: #575757;
+  box-shadow: 3px 3px #cbd6ff;
 }
