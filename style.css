@@ -50,9 +50,6 @@ footer {
   max-width: 50%;
 }
 
-.weather-forecast-max-temperature,
-.weather-forecast-min-temperature {
-}
 #scaleWrapper {
   font-size: 18px;
   vertical-align: super;
